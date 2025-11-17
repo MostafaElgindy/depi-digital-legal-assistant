@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دستور مصر - دردشة ذكية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-file-earmark-text"></i> دستور مصر - الدردشة الذكية
+            </span>
+            <span class="text-white-50">احصل على إجابات دقيقة عن الدستور المصري</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-container">
+        <div class="row h-100">
+            <!-- Sidebar - Upload Section -->
+            <div class="col-md-3 bg-light sidebar">
+                <div class="p-4">
+                    <h5 class="mb-4">
+                        <i class="bi bi-upload"></i> رفع الدستور
+                    </h5>
+                    
+                    <div class="upload-section">
+                        <div class="upload-box" id="uploadBox">
+                            <i class="bi bi-cloud-upload"></i>
+                            <p>اسحب ملف PDF هنا</p>
+                            <p class="text-muted small">أو انقر للاختيار</p>
+                        </div>
+                        <input type="file" id="fileInput" accept=".pdf" hidden>
+                    </div>
+
+                    <button class="btn btn-primary w-100 mt-3" id="uploadBtn" disabled>
+                        <i class="bi bi-upload"></i> رفع وتحضير
+                    </button>
+
+                    <div id="uploadStatus" class="mt-3"></div>
+
+                    <!-- History -->
+                    <hr class="my-4">
+                    <h6 class="mb-3">
+                        <i class="bi bi-clock-history"></i> السجل
+                    </h6>
+                    <div id="chatHistory" class="chat-history">
+                        <p class="text-muted text-center small">لم تبدأ أي محادثة بعد</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="col-md-9 d-flex flex-column chat-container">
+                <!-- Messages Area -->
+                <div class="flex-grow-1 overflow-auto p-4" id="messagesArea">
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-chat-dots" style="font-size: 3rem; opacity: 0.3;"></i>
+                        <p class="mt-3">ابدأ بطرح سؤالك عن الدستور المصري</p>
+                        <small class="d-block mt-2">تأكد من رفع ملف الدستور أولاً</small>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="p-4 bg-light border-top">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="form-control form-control-lg" 
+                            id="questionInput" 
+                            placeholder="اكتب سؤالك هنا..."
+                            disabled
+                        >
+                        <button class="btn btn-primary btn-lg" type="button" id="sendBtn" disabled>
+                            <i class="bi bi-send"></i> إرسال
+                        </button>
+                    </div>
+                    <small class="text-muted d-block mt-2">اضغط Enter أو انقر الزر للإرسال</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">جاري المعالجة...</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

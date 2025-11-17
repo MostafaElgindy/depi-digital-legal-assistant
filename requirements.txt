@@ -1,0 +1,33 @@
+# Core LlamaIndex
+llama-index==0.11.17
+llama-index-core
+
+# Integrations (The new free stack)
+llama-index-llms-gemini
+llama-index-embeddings-huggingface
+llama-index-vector-stores-chroma
+
+# Vector Database
+chromadb==0.3.21
+
+# ML & Transformers (For local embeddings)
+torch
+transformers
+sentence-transformers
+
+# Data Processing & Utils
+pandas
+numpy
+pymupdf
+python-dotenv
+requests
+tqdm
+
+# Backend (FastAPI)
+fastapi
+uvicorn
+python-multipart
+
+# Frontend / Notebooks
+streamlit
+jupyter==1.0.0

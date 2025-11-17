@@ -41,23 +41,22 @@ if __name__ == '__main__':
     os.chdir(WEB_DIR)
     
     print(f"\n{'='*60}")
-    print(f"🚀 Web Server جاري التشغيل...")
+    print(f"Web Server is loading...")
     print(f"{'='*60}")
     print(f"📍 الموقع: http://127.0.0.1:{PORT}")
-    print(f"📂 المجلد: {WEB_DIR}")
-    print(f"⚠️  اضغط Ctrl+C للإيقاف")
+    print(f"dir: {WEB_DIR}")
+    print(f"stop ctrl + c")
     print(f"{'='*60}\n")
 
     try:
         with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
-            print(f"✅ الخادم يعمل بنجاح على http://127.0.0.1:{PORT}")
+            print(f"server is running http://127.0.0.1:{PORT}")
             httpd.serve_forever()
     except OSError as e:
         if e.errno == 48:  # Port already in use
-            print(f"❌ خطأ: المنفذ {PORT} مستخدم بالفعل")
-            print(f"جرب منفذ مختلف أو أغلق البرنامج الآخر")
+            print(f"port is used!!")
         else:
-            print(f"❌ خطأ: {e}")
+            print(f"Error: {e}")
         sys.exit(1)
     except KeyboardInterrupt:
-        print("\n\n⏹️  الخادم توقف بنجاح")
+        print("\n\n Server stop")

@@ -34,7 +34,7 @@ This is a **Senior Project** developed by **AI Engineering students** combining 
 | **Hager Ayman Abdullah** | Developer |
 
 ### 👨‍🏫 Supervisor
-- **Mohamed Radwan**
+- **Mahmoud Radwan**
 
 ---
 

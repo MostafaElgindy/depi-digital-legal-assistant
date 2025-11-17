@@ -33,8 +33,7 @@ def create_collection_from_pdf(pdf_file_path):
     chroma_collection = db.get_or_create_collection(
         name=collection_name, embedding_function=huggingface_ef)
 
-    # Create an embedding model (Free Alternative)
-    # تم استبدال موديل OpenAI بالبديل المجاني المتوافق مع LlamaIndex
+    # Create an embedding model
     embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
     # Initialize vector store and storage context
@@ -47,6 +46,3 @@ def create_collection_from_pdf(pdf_file_path):
 
     print(
         f"Collection '{collection_name}' created successfully with {len(documents)} documents.")
-
-# Usage
-# create_collection_from_pdf('constitution.pdf')

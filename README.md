@@ -4,13 +4,13 @@
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 📋 Project Overview
+## Project Overview
 
 **Constitution Study Chatbot** is an intelligent document retrieval and question-answering system designed specifically for studying the **Egyptian Constitution (2014)**. The application leverages advanced AI technologies to provide accurate, context-aware responses to user queries about constitutional articles and provisions.
 
 This is a **Senior Project** developed by **AI Engineering students** combining modern web technologies with cutting-edge AI capabilities including semantic search, vector embeddings, and large language models.
 
-### 🎯 Key Features
+### Key Features
 
 - **PDF Document Upload**: Users can upload the Egyptian Constitution PDF for analysis
 - **Intelligent Question Answering**: Ask questions in natural language and receive precise answers from the constitutional text
@@ -22,7 +22,7 @@ This is a **Senior Project** developed by **AI Engineering students** combining 
 
 ---
 
-## 👥 Team Members
+## Team Members
 
 | Name | Role |
 |------|------|
@@ -33,12 +33,12 @@ This is a **Senior Project** developed by **AI Engineering students** combining 
 | **Abdullah El-Sayed Saad Hafz** | Developer |
 | **Hager Ayman Abdullah** | Developer |
 
-### 👨‍🏫 Supervisor
+### Supervisor
 - **Mahmoud Radwan**
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Technology Stack
 
@@ -91,7 +91,7 @@ This is a **Senior Project** developed by **AI Engineering students** combining 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Constitution-Study-Chatbot/
@@ -130,7 +130,7 @@ Constitution-Study-Chatbot/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -189,7 +189,7 @@ This will verify:
 
 ---
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### Running the Application
 
@@ -266,7 +266,7 @@ Navigate to: `http://127.0.0.1:8080`
 
 ---
 
-## 🔧 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -312,7 +312,7 @@ curl "http://127.0.0.1:8000/chat?query_request=ما%20هي%20حقوق%20الإن
 
 ---
 
-## 🤖 AI Engineering Concepts Applied
+## AI Engineering Concepts Applied
 
 This project demonstrates key AI/ML concepts essential for AI Engineers:
 
@@ -381,7 +381,7 @@ This project demonstrates key AI/ML concepts essential for AI Engineers:
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -406,7 +406,7 @@ For production, consider:
 
 ---
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 Through this project, AI Engineering students gain hands-on experience with:
 
@@ -422,26 +422,13 @@ Through this project, AI Engineering students gain hands-on experience with:
 
 ---
 
-- [ ] Dark mode theme
-- [ ] Multi-language support (UI)
-- [ ] Export chat history as PDF/JSON
-- [ ] User authentication & accounts
-- [ ] Support for multiple documents
-- [ ] Advanced search filters
-- [ ] Analytics & usage statistics
-- [ ] Mobile app version
-- [ ] Voice input/output
-- [ ] Persistent database option
-
----
-
-## 📝 License
+## License
 
 This project is licensed under the **MIT License** - see the LICENSE file for details.
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Digital Pioneer of Egypt** initiative for project inspiration
 

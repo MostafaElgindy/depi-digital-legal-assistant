@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(f"\n{'='*60}")
     print(f"Web Server is loading...")
     print(f"{'='*60}")
-    print(f"📍 الموقع: http://127.0.0.1:{PORT}")
+    print(f"Site: http://127.0.0.1:{PORT}")
     print(f"dir: {WEB_DIR}")
     print(f"stop ctrl + c")
     print(f"{'='*60}\n")

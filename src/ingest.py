@@ -29,7 +29,6 @@ def create_collection_from_pdf(pdf_file_path):
     collection_name = os.path.splitext(os.path.basename(pdf_file_path))[
         0]  # Use the file name without extension
     
-    # تمرير الدالة المجانية للـ Collection
     chroma_collection = db.get_or_create_collection(
         name=collection_name, embedding_function=huggingface_ef)
 

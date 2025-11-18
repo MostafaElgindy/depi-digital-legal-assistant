@@ -16,18 +16,10 @@ transformers
 sentence-transformers
 
 # Data Processing & Utils
-pandas
-numpy
 pymupdf
 python-dotenv
-requests
-tqdm
 
 # Backend (FastAPI)
 fastapi
 uvicorn
 python-multipart
-
-# Frontend / Notebooks
-streamlit
-jupyter==1.0.0

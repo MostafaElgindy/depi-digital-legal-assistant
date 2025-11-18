@@ -77,21 +77,30 @@ uploadBtn.addEventListener('click', async () => {
     try {
         const response = await fetch(`${API_URL}/upload_pdf/`, {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'Accept': 'application/toon'
+            }
         });
 
         if (response.ok) {
-            const data = await response.json();
-            showStatus(`✓ تم تحضير الملف بنجاح!`, 'success');
-            enableChat();
-            clearMessages();
-            addMessageToUI('مساعد', 'تم تحميل الدستور بنجاح! الآن يمكنك طرح أسئلتك.', 'assistant');
+            const toonText = await response.text();
+            const data = parseTOON(toonText);
+            
+            if (data.success) {
+                showStatus(`✓ تم تحضير الملف بنجاح!`, 'success');
+                enableChat();
+                clearMessages();
+                addMessageToUI('مساعد', 'تم تحميل الدستور بنجاح! الآن يمكنك طرح أسئلتك.', 'assistant');
+            } else {
+                showStatus(`خطأ: ${data.message || 'فشل الرفع'}`, 'error');
+            }
         } else {
-            const error = await response.json();
-            showStatus(`خطأ: ${error.detail || 'فشل الرفع'}`, 'error');
+            showStatus(`خطأ: فشل الرفع`, 'error');
         }
     } catch (error) {
         showStatus(`خطأ: ${error.message}`, 'error');
+        console.error('Upload error:', error);
     } finally {
         uploadBtn.disabled = true;
         uploadBtn.innerHTML = '<i class="bi bi-upload"></i> رفع وتحضير';
@@ -121,18 +130,28 @@ async function sendMessage() {
     scrollToBottom();
 
     try {
-        const response = await fetch(`${API_URL}/chat?query_request=${encodeURIComponent(question)}`);
+        const response = await fetch(`${API_URL}/chat?query_request=${encodeURIComponent(question)}`, {
+            headers: {
+                'Accept': 'application/toon'
+            }
+        });
 
         if (response.ok) {
-            const data = await response.json();
-            const answer = data.response || 'لم أستطع الحصول على إجابة';
-            addMessageToUI('مساعد', answer, 'assistant');
+            const toonText = await response.text();
+            const data = parseTOON(toonText);
+            
+            if (data.success) {
+                const answer = data.response || 'لم أستطع الحصول على إجابة';
+                addMessageToUI('مساعد', answer, 'assistant');
+            } else {
+                addMessageToUI('مساعد', `خطأ: ${data.message || 'حدث خطأ في المعالجة'}`, 'assistant');
+            }
         } else {
-            const error = await response.json();
-            addMessageToUI('مساعد', `خطأ: ${error.detail || 'حدث خطأ في المعالجة'}`, 'assistant');
+            addMessageToUI('مساعد', 'خطأ في الاتصال بالخادم', 'assistant');
         }
     } catch (error) {
         addMessageToUI('مساعد', `خطأ في الاتصال: ${error.message}`, 'assistant');
+        console.error('Chat error:', error);
     } finally {
         showLoading(false);
         scrollToBottom();

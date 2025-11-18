@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Get config path
+# Load environment variables from a specific .env file
 config_path = os.path.join(os.path.dirname(__file__), '..', 'config', '.env')
 if os.path.exists(config_path):
     load_dotenv(config_path)
@@ -65,7 +65,7 @@ def setup_chat_engine(index):
     
     chat_history = []
 
-    # Use SimpleChatEngine instead of CondenseQuestionChatEngine
+    # Set up the chat engine
     chat_engine = SimpleChatEngine.from_defaults(
         query_engine=query_engine,
         llm=llm

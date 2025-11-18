@@ -41,22 +41,22 @@ async def chat_with_pdf(query_request: str = Query(...)):
 @app.post("/upload_pdf/")
 async def upload_pdf(file: UploadFile = File(...)):
     # Save the uploaded PDF file to a temporary location
-    pdf_file_path = f"./temp/{file.filename}"  # Save it in a temp folder
+    pdf_file_path = f"./temp/{file.filename}"  # Temporary path for the uploaded file
     try:
-        os.makedirs("./temp", exist_ok=True)  # Ensure temp folder exists
+        os.makedirs("./temp", exist_ok=True)  # Ensure the temp directory exists
         with open(pdf_file_path, "wb") as f:
             f.write(await file.read())
         
-        # Process the PDF file and create a collection
+        # Process the PDF to create a collection
         create_collection_from_pdf(pdf_file_path)
 
-        # Clean up the temporary file after processing
+        # Clean up the temporary file
         os.remove(pdf_file_path)
 
         return JSONResponse(content={"message": f"Collection created from '{file.filename}' successfully."}, status_code=200)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
-        # Ensure the file is removed in case of an error
+        # Ensure the temporary file is removed in case of an error
         if os.path.exists(pdf_file_path):
             os.remove(pdf_file_path)

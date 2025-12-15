@@ -41,7 +41,7 @@ arabic-rag-app/
 │   └── health.py                # Health API
 ├── utils/
 │   ├── __init__.py
-│   └── toon_utils.py            # أدوات TOON ⭐
+│   └── toon_utils.py            # TOON ⭐
 ├── static/
 │   ├── css/
 │   │   └── style.css

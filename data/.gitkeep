@@ -1,0 +1,6 @@
+# هذا المجلد لتخزين ملفات PDF
+# ضع ملف الدستور المصري هنا باسم:
+# Egyptian_Constitution.pdf
+
+# أو حدد مسارًا مختلفًا في ملف .env:
+# PDF_PATH=path/to/your/document.pdf

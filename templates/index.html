@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Dustour AI - مستشار الدستور المصري</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇪🇬</text></svg>">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader-container">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">جاري تحميل النظام...</p>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">⚖️</span>
+                    <div class="logo-text">
+                        <h1>Al-Dustour AI</h1>
+                        <span>الدستور المصري</span>
+                    </div>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <span></span>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="chat">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">استشارة قانونية</span>
+                </a>
+                <a href="#" class="nav-item" data-section="upload">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-text">رفع وثيقة</span>
+                </a>
+                <a href="#" class="nav-item" data-section="history">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">سجل الاستشارات</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">الإعدادات</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status" id="systemStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-label">جاري التحقق...</span>
+                </div>
+                <div class="model-info">
+                    <span class="model-icon">🤖</span>
+                    <span>Llama 3.3 70B</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="header-title">
+                    <h2 id="sectionTitle">استشارة قانونية</h2>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" id="themeToggle" title="تغيير المظهر">
+                        <span class="icon-light">☀️</span>
+                        <span class="icon-dark">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat Section -->
+            <section class="content-section active" id="chatSection">
+                <div class="chat-container">
+                    <!-- Welcome Message -->
+                    <div class="welcome-card" id="welcomeCard">
+                        <div class="welcome-icon">🇪🇬</div>
+                        <h2>مرحباً بك في مستشار الدستور المصري</h2>
+                        <p>اطرح أي سؤال قانوني متعلق بالدستور المصري وسأساعدك في الإجابة عليه بناءً على النصوص الدستورية الرسمية.</p>
+                        <div class="example-queries">
+                            <p class="examples-title">أمثلة على الأسئلة:</p>
+                            <div class="example-chips">
+                                <button class="example-chip" data-query="ما هي حقوق المواطن المصري؟">حقوق المواطن</button>
+                                <button class="example-chip" data-query="ما هي صلاحيات رئيس الجمهورية؟">صلاحيات الرئيس</button>
+                                <button class="example-chip" data-query="هل يجوز محاكمة المدنيين أمام القضاء العسكري؟">القضاء العسكري</button>
+                                <button class="example-chip" data-query="ما هي شروط الترشح للرئاسة؟">شروط الترشح</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be inserted here -->
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-container">
+                        <div class="input-options">
+                            <label class="option-checkbox">
+                                <input type="checkbox" id="showSources" checked>
+                                <span class="checkmark"></span>
+                                <span>عرض المصادر</span>
+                            </label>
+                            <div class="option-select">
+                                <label>عدد المصادر:</label>
+                                <select id="numSources">
+                                    <option value="3">3</option>
+                                    <option value="5" selected>5</option>
+                                    <option value="7">7</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <form class="chat-form" id="chatForm">
+                            <div class="input-wrapper">
+                                <textarea 
+                                    id="queryInput" 
+                                    placeholder="اكتب سؤالك القانوني هنا..."
+                                    rows="1"
+                                    required
+                                ></textarea>
+                                <button type="submit" class="send-btn" id="sendBtn" title="إرسال">
+                                    <svg viewBox="0 0 24 24" class="send-icon">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                    </svg>
+                                    <div class="btn-spinner"></div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="content-section" id="uploadSection">
+                <div class="upload-container">
+                    <div class="upload-card">
+                        <div class="upload-header">
+                            <h3>📄 رفع وثيقة جديدة</h3>
+                            <p>يمكنك رفع ملفات PDF لإضافتها إلى قاعدة المعرفة</p>
+                        </div>
+                        
+                        <form id="uploadForm" class="upload-form">
+                            <div class="drop-zone" id="dropZone">
+                                <input type="file" id="fileInput" accept=".pdf" hidden>
+                                <div class="drop-zone-content">
+                                    <div class="drop-icon">📁</div>
+                                    <p class="drop-text">اسحب ملف PDF هنا</p>
+                                    <p class="drop-subtext">أو اضغط لاختيار ملف</p>
+                                </div>
+                                <div class="file-preview" id="filePreview">
+                                    <span class="file-icon">📄</span>
+                                    <span class="file-name" id="selectedFileName"></span>
+                                    <button type="button" class="remove-file" id="removeFile">✕</button>
+                                </div>
+                            </div>
+
+                            <div class="upload-options">
+                                <div class="form-group">
+                                    <label for="docName">اسم الوثيقة (اختياري)</label>
+                                    <input type="text" id="docName" placeholder="سيتم استخدام اسم الملف إذا ترك فارغًا">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="upload-submit-btn" id="uploadSubmitBtn" disabled>
+                                <span class="btn-text">رفع الوثيقة</span>
+                                <span class="btn-loader"></span>
+                            </button>
+                        </form>
+
+                        <div class="upload-progress" id="uploadProgress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <p class="progress-text" id="progressText">جاري الرفع...</p>
+                        </div>
+                    </div>
+
+                    <!-- Initialize Default Documents -->
+                    <div class="init-card">
+                        <h4>🚀 تهيئة الوثائق الافتراضية</h4>
+                        <p>إذا كان لديك ملف الدستور في المسار الافتراضي، اضغط هنا لتهيئة النظام</p>
+                        <button class="init-btn" id="initBtn">
+                            <span>تهيئة النظام</span>
+                        </button>
+                    </div>
+
+                    <!-- Documents List -->
+                    <div class="documents-card">
+                        <h4>📚 الوثائق المحملة</h4>
+                        <div class="documents-list" id="documentsList">
+                            <div class="loading-placeholder">جاري التحميل...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="content-section" id="historySection">
+                <div class="history-container">
+                    <div class="history-header">
+                        <h3>📚 سجل الاستشارات</h3>
+                        <button class="clear-history-btn" id="clearHistoryBtn">
+                            <span>🗑️</span> مسح السجل
+                        </button>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <!-- History items will be inserted here -->
+                    </div>
+                    <div class="history-empty" id="historyEmpty">
+                        <span class="empty-icon">📝</span>
+                        <p>لا توجد استشارات سابقة</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settingsSection">
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h3>⚙️ الإعدادات</h3>
+                        
+                        <div class="settings-group">
+                            <h4>المظهر</h4>
+                            <div class="setting-item">
+                                <label>وضع العرض</label>
+                                <div class="theme-buttons">
+                                    <button class="theme-btn active" data-theme="light">
+                                        ☀️ فاتح
+                                    </button>
+                                    <button class="theme-btn" data-theme="dark">
+                                        🌙 داكن
+                                    </button>
+                                    <button class="theme-btn" data-theme="auto">
+                                        🔄 تلقائي
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h4>الاستعلامات</h4>
+                            <div class="setting-item">
+                                <label for="defaultSources">عدد المصادر الافتراضي</label>
+                                <select id="defaultSources">
+                                    <option value="3">3 مصادر</option>
+                                    <option value="5" selected>5 مصادر</option>
+                                    <option value="7">7 مصادر</option>
+                                    <option value="10">10 مصادر</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>عرض المصادر تلقائيًا</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="autoShowSources" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h4>معلومات النظام</h4>
+                            <div class="system-info" id="systemInfo">
+                                <div class="info-row">
+                                    <span>النموذج:</span>
+                                    <span id="infoModel">Llama 3.3 70B</span>
+                                </div>
+                                <div class="info-row">
+                                    <span>حالة النظام:</span>
+                                    <span id="infoStatus">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span>الوثائق المحملة:</span>
+                                    <span id="infoDocuments">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
